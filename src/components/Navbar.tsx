@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
+import logo from "@/assets/logo.png";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -19,7 +20,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4 flex items-center justify-between h-20">
         <Link to="/" className="font-display text-2xl font-bold tracking-wide">
-          <span className="gold-text">The Skin House</span>
+          <img src={logo} alt="The Skin House" className="h-14 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
