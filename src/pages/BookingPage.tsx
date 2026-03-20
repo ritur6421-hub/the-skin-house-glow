@@ -34,13 +34,17 @@ const BookingPage = () => {
 
     setLoading(true);
     try {
-      // For now, send via WhatsApp until Supabase is connected
-      const text = `New Appointment Request:\nName: ${form.name}\nPhone: ${form.phone}\nService: ${form.service}\nDate: ${form.date}\nMessage: ${form.message}`;
-      window.open(
-        `https://wa.me/919709703638?text=${encodeURIComponent(text)}`,
-        "_blank"
-      );
-      toast.success("Appointment request sent! We'll confirm shortly.");
+      const { error } = await supabase.from("appointments").insert({
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        service: form.service,
+        preferred_date: form.date,
+        message: form.message.trim() || null,
+      });
+
+      if (error) throw error;
+
+      toast.success("Appointment booked successfully! We'll contact you shortly.");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
     } catch {
       toast.error("Something went wrong. Please try again.");
