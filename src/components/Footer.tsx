@@ -9,9 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <h3 className="font-display text-2xl font-bold text-background mb-4">
-              The Skin House
-            </h3>
+            <img src={logo} alt="The Skin House" className="h-16 w-auto mb-4" />
             <p className="text-sm leading-relaxed opacity-70">
               Premium skin & hair treatments by Dr. Simran Kaur. Your journey to
               radiant, healthy skin starts here.
