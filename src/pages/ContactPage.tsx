@@ -2,24 +2,33 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, MapPin, Clock, Send, Instagram } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactPage = () => {
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.phone.trim() || !form.message.trim()) {
       toast.error("Please fill in all fields");
       return;
     }
     setLoading(true);
-    // Simple WhatsApp redirect for now
-    const text = `Hi Dr. Simran, I'm ${form.name}. ${form.message} (Phone: ${form.phone})`;
-    window.open(`https://wa.me/919709703638?text=${encodeURIComponent(text)}`, "_blank");
-    setLoading(false);
-    toast.success("Redirecting to WhatsApp...");
-    setForm({ name: "", phone: "", message: "" });
+    try {
+      const { error } = await supabase.from("contacts").insert({
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        message: form.message.trim(),
+      });
+      if (error) throw error;
+      toast.success("Message sent successfully! We'll get back to you soon.");
+      setForm({ name: "", phone: "", message: "" });
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
