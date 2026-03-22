@@ -4,7 +4,7 @@ const WhatsAppButton = () => {
       href="https://wa.me/919709703638?text=Hi%20I%20want%20to%20book%20an%20appointment"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+      className="fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer"
       aria-label="Chat on WhatsApp"
     >
       <svg viewBox="0 0 24 24" fill="white" className="w-7 h-7">
