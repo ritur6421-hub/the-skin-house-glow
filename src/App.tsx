@@ -11,6 +11,9 @@ import ServicesPage from "./pages/ServicesPage";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import BookingPage from "./pages/BookingPage";
+import SignupPage from "./pages/SignupPage";
+import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,18 +23,33 @@ const App = () => (
     <TooltipProvider>
       <Sonner />
       <BrowserRouter>
-        <Navbar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/book" element={<BookingPage />} />
-          <Route path="*" element={<NotFound />} />
+          {/* Admin routes without Navbar/Footer */}
+          <Route path="/admin" element={<AdminLoginPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+          {/* Public routes with Navbar/Footer */}
+          <Route
+            path="*"
+            element={
+              <>
+                <Navbar />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/gallery" element={<GalleryPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/book" element={<BookingPage />} />
+                  <Route path="/signup" element={<SignupPage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+                <WhatsAppButton />
+              </>
+            }
+          />
         </Routes>
-        <Footer />
-        <WhatsAppButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
