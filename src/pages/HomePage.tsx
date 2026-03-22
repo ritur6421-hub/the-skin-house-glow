@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles, Star, Zap, Heart, Scissors, ShieldCheck, Users } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import HeroSlider from "@/components/HeroSlider";
 
 const services = [
   { icon: Sparkles, name: "Botox & Fillers", desc: "Smooth wrinkles and restore youthful volume" },
