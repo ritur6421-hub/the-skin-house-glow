@@ -15,49 +15,8 @@ const services = [
 const HomePage = () => {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroBg})` }}
-        />
-        <div className="absolute inset-0 bg-foreground/50" />
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <p className="text-gold-light text-sm tracking-[0.3em] uppercase mb-4 font-medium">
-              Premium Skin & Hair Clinic
-            </p>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-background leading-tight mb-6">
-              Glow with Confidence
-              <br />
-              <span className="italic font-normal text-gold-light">
-                at The Skin House
-              </span>
-            </h1>
-            <p className="text-background/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
-              Advanced Skin & Hair Treatments by Dr. Simran Kaur
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/book"
-                className="gold-gradient text-primary-foreground px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase hover:opacity-90 hover:shadow-2xl transition-all"
-              >
-                Book Appointment
-              </Link>
-              <Link
-                to="/services"
-                className="border-2 border-background/30 text-background px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase hover:bg-background/10 transition-all"
-              >
-                Our Services
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Slider */}
+      <HeroSlider />
 
       {/* Services Highlight */}
       <section className="py-24 bg-background">
