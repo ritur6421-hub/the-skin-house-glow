@@ -17,12 +17,15 @@ const SignupPage = () => {
 
     setLoading(true);
     try {
-      const { error } = await supabase.from("signups").insert({
+      const payload = {
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
-      });
-      if (error) throw error;
+      };
+      console.log("Submitting signup:", payload);
+      const { error } = await supabase.from("signups").insert(payload);
+      if (error) { console.error("Signup insert error:", error); throw error; }
+      console.log("Signup saved successfully");
       toast.success("Signed up successfully! We'll be in touch.");
       setForm({ name: "", email: "", phone: "" });
     } catch {

@@ -34,15 +34,17 @@ const BookingPage = () => {
 
     setLoading(true);
     try {
-      const { error } = await supabase.from("appointments").insert({
+      const payload = {
         name: form.name.trim(),
         phone: form.phone.trim(),
         service: form.service,
         preferred_date: form.date,
         message: form.message.trim() || null,
-      });
-
-      if (error) throw error;
+      };
+      console.log("Submitting appointment:", payload);
+      const { error } = await supabase.from("appointments").insert(payload);
+      if (error) { console.error("Appointment insert error:", error); throw error; }
+      console.log("Appointment saved successfully");
 
       toast.success("Appointment booked successfully! We'll contact you shortly.");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
