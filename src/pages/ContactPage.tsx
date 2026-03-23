@@ -16,12 +16,15 @@ const ContactPage = () => {
     }
     setLoading(true);
     try {
-      const { error } = await supabase.from("contacts").insert({
+      const payload = {
         name: form.name.trim(),
         phone: form.phone.trim(),
         message: form.message.trim(),
-      });
-      if (error) throw error;
+      };
+      console.log("Submitting contact:", payload);
+      const { error } = await supabase.from("contacts").insert(payload);
+      if (error) { console.error("Contact insert error:", error); throw error; }
+      console.log("Contact saved successfully");
       toast.success("Message sent successfully! We'll get back to you soon.");
       setForm({ name: "", phone: "", message: "" });
     } catch {
