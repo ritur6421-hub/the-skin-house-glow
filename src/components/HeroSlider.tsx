@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -14,32 +13,32 @@ const slides = [
     heading: "Glow with Confidence",
     subheading: "Advanced Skin & Hair Treatments at The Skin House",
     button: "Book Appointment",
-    link: "/book",
   },
   {
     image: heroSlide2,
     heading: "Acne & Scar Treatment",
     subheading: "Get clear and healthy skin with expert care",
     button: "Explore Services",
-    link: "/services",
   },
   {
     image: heroSlide3,
     heading: "Laser & Skin Rejuvenation",
     subheading: "Safe and effective modern treatments",
     button: "Learn More",
-    link: "/services",
   },
   {
     image: heroSlide4,
     heading: "Hair Restoration Solutions",
     subheading: "Regain confidence with advanced hair treatments",
     button: "Book Now",
-    link: "/book",
   },
 ];
 
-const HeroSlider = () => {
+interface HeroSliderProps {
+  onBookClick?: () => void;
+}
+
+const HeroSlider = ({ onBookClick }: HeroSliderProps) => {
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => {
@@ -57,7 +56,6 @@ const HeroSlider = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Slides */}
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -71,12 +69,10 @@ const HeroSlider = () => {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slides[current].image})` }}
           />
-          {/* Dark gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
         </motion.div>
       </AnimatePresence>
 
-      {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
         <div className="container mx-auto px-4 text-center">
           <AnimatePresence mode="wait">
@@ -96,18 +92,17 @@ const HeroSlider = () => {
               <p className="text-background/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
                 {slides[current].subheading}
               </p>
-              <Link
-                to={slides[current].link}
-                className="gold-gradient text-primary-foreground px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase hover:opacity-90 hover:shadow-2xl transition-all inline-block"
+              <button
+                onClick={onBookClick}
+                className="gold-gradient text-primary-foreground px-10 py-4 rounded-full text-sm font-bold tracking-widest uppercase hover:opacity-90 hover:shadow-2xl transition-all inline-block cursor-pointer"
               >
                 {slides[current].button}
-              </Link>
+              </button>
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
       <button
         onClick={prev}
         className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm border border-background/30 flex items-center justify-center text-background hover:bg-background/30 transition-all"
@@ -123,16 +118,13 @@ const HeroSlider = () => {
         <ChevronRight size={24} />
       </button>
 
-      {/* Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
             className={`h-3 rounded-full transition-all duration-300 ${
-              i === current
-                ? "w-8 gold-gradient"
-                : "w-3 bg-background/40 hover:bg-background/60"
+              i === current ? "w-8 gold-gradient" : "w-3 bg-background/40 hover:bg-background/60"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
