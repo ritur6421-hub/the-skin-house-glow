@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
@@ -14,13 +14,30 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-sm"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4 flex items-center justify-between h-20">
         <Link to="/" className="font-display text-2xl font-bold tracking-wide">
-          <img src={logo} alt="The Skin House" className="h-14 w-14 rounded-full object-cover border-2 border-primary/30" />
+          <img
+            src={logo}
+            alt="The Skin House"
+            className="h-14 w-14 rounded-full object-cover border-2 border-primary/30"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -32,7 +49,9 @@ const Navbar = () => {
               className={`text-sm font-medium tracking-wider uppercase transition-colors hover:text-primary ${
                 location.pathname === link.path
                   ? "text-primary"
-                  : "text-muted-foreground"
+                  : scrolled
+                  ? "text-muted-foreground"
+                  : "text-background/90 hover:text-background"
               }`}
             >
               {link.name}
@@ -49,7 +68,7 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-foreground"
+          className={`md:hidden ${scrolled ? "text-foreground" : "text-background"}`}
           aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
