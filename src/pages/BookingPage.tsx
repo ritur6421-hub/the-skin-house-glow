@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Send } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { submitAppointment } from "@/lib/appointments";
 
 const serviceOptions = [
   "Botox & Fillers",
@@ -34,21 +34,14 @@ const BookingPage = () => {
 
     setLoading(true);
     try {
-      const payload = {
-        name: form.name.trim(),
-        phone: form.phone.trim(),
-        service: form.service,
-        preferred_date: form.date,
-        message: form.message.trim() || null,
-      };
-      console.log("Submitting appointment:", payload);
-      const { error } = await supabase.from("appointments").insert(payload);
+      const { error } = await submitAppointment(form);
       if (error) { console.error("Appointment insert error:", error); throw error; }
       console.log("Appointment saved successfully");
 
       toast.success("Appointment booked successfully! We'll contact you shortly.");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
-    } catch {
+    } catch (error) {
+      console.error("Appointment page submission failed:", error);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
