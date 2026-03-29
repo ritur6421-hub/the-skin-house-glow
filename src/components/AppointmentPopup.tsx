@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { submitAppointment } from "@/lib/appointments";
 
 const serviceOptions = [
   "Botox & Fillers",
@@ -38,15 +38,7 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
 
     setLoading(true);
     try {
-      const payload = {
-        name: form.name.trim(),
-        phone: form.phone.trim(),
-        service: form.service,
-        preferred_date: form.date,
-        message: form.message.trim() || null,
-      };
-      console.log("Submitting appointment (popup):", payload);
-      const { error } = await supabase.from("appointments").insert(payload);
+      const { error } = await submitAppointment(form);
       if (error) {
         console.error("Appointment insert error:", error);
         throw error;
@@ -55,7 +47,8 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
       toast.success("Appointment booked! We'll contact you shortly.");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
       onClose();
-    } catch {
+    } catch (error) {
+      console.error("Appointment popup submission failed:", error);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
