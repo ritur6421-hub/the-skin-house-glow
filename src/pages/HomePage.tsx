@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Sparkles, Star, Zap, Heart, Scissors, ShieldCheck, Users,
-  Phone, MapPin, Clock, Send, ChevronLeft, ChevronRight, Quote,
+  Phone, MapPin, Clock, Send, ChevronLeft, ChevronRight, Quote, Instagram,
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
