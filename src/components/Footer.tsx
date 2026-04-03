@@ -16,7 +16,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="https://www.instagram.com/theskinhouse"
+                href="https://www.instagram.com/theskinhouseofficial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
