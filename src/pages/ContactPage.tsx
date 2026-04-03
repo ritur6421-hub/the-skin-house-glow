@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, MapPin, Clock, Send, Instagram } from "lucide-react";
+import { Phone, MapPin, Clock, Send } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -107,20 +107,8 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <a
-                  href="https://www.instagram.com/theskinhouseofficial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-muted transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                    <Instagram size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Instagram</p>
-                    <p className="text-muted-foreground">@theskinhouseofficial</p>
-                  </div>
-                </a>
+
+
               </div>
 
               {/* Map */}
