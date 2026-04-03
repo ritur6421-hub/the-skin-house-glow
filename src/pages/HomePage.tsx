@@ -445,7 +445,53 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Instagram Follow Section */}
+      <section className="py-20 bg-gradient-to-br from-accent/40 via-secondary/30 to-primary/10 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-10 w-40 h-40 rounded-full bg-primary blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-56 h-56 rounded-full bg-secondary blur-3xl" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="flex flex-col items-center text-center max-w-xl mx-auto"
+          >
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[hsl(330,70%,50%)] via-[hsl(15,90%,55%)] to-[hsl(45,95%,55%)] flex items-center justify-center mb-6 shadow-lg"
+            >
+              <Instagram size={36} className="text-white" />
+            </motion.div>
 
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+              Stay Connected
+            </h2>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              Follow us for skincare tips, treatment results, behind-the-scenes, and exclusive offers.
+            </p>
+
+            <motion.a
+              href="https://www.instagram.com/theskinhouseofficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[hsl(330,70%,50%)] via-[hsl(15,90%,55%)] to-[hsl(45,95%,55%)] text-white font-semibold tracking-wider uppercase text-sm shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <Instagram size={20} />
+              Follow Us on Instagram
+            </motion.a>
+
+            <p className="mt-4 text-xs text-muted-foreground">
+              @theskinhouseofficial
+            </p>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
