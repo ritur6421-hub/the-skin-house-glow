@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Mail } from "lucide-react";
+import { Phone, MapPin, Instagram, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -15,6 +15,15 @@ const Footer = () => {
               radiant, healthy skin starts here.
             </p>
             <div className="flex gap-4 mt-6">
+              <a
+                href="https://www.instagram.com/theskinhouseofficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center hover:bg-primary hover:border-primary transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
               <a
                 href="https://wa.me/919709703638"
                 target="_blank"
