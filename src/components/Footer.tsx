@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Instagram, Mail } from "lucide-react";
+import { Phone, MapPin, Mail } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
