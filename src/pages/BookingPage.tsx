@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Send } from "lucide-react";
 import { toast } from "sonner";
-import { submitAppointment } from "@/lib/appointments";
+import { submitAppointment, openWhatsApp } from "@/lib/appointments";
 
 const serviceOptions = [
   "Botox & Fillers",

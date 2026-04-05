@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { toast } from "sonner";
-import { submitAppointment } from "@/lib/appointments";
+import { submitAppointment, openWhatsApp } from "@/lib/appointments";
 
 const serviceOptions = [
   "Botox & Fillers",
