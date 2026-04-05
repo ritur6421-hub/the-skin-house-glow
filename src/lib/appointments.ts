@@ -31,21 +31,16 @@ export const submitAppointment = async ({
     message: message.trim() || null,
   };
 
-  console.log(
-    payload.name,
-    payload.phone,
-    payload.service,
-    payload.preferred_date,
-    payload.message,
-  );
-
-  const response = await supabase
-    .from("appointments")
-    .insert([payload])
-    .select()
-    .single();
-
-  console.log("Data inserted", response);
-
-  return response;
+  try {
+    const response = await supabase
+      .from("appointments")
+      .insert([payload])
+      .select()
+      .single();
+    console.log("Data inserted", response);
+    return response;
+  } catch (err) {
+    console.warn("DB save failed, continuing to WhatsApp", err);
+    return { data: null, error: err };
+  }
 };

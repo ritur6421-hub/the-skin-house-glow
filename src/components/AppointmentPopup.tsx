@@ -38,22 +38,15 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
 
     setLoading(true);
     try {
-      const { error } = await submitAppointment(form);
-      if (error) {
-        console.error("Appointment insert error:", error);
-        throw error;
-      }
-      console.log("Appointment saved successfully");
-      openWhatsApp(form);
-      toast.success("Appointment booked! WhatsApp is opening...");
-      setForm({ name: "", phone: "", service: "", date: "", message: "" });
-      onClose();
-    } catch (error) {
-      console.error("Appointment popup submission failed:", error);
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
+      await submitAppointment(form);
+    } catch (err) {
+      console.warn("DB save failed, still opening WhatsApp", err);
     }
+    openWhatsApp(form);
+    toast.success("Appointment booked! WhatsApp is opening...");
+    setForm({ name: "", phone: "", service: "", date: "", message: "" });
+    onClose();
+    setLoading(false);
   };
 
   return (
