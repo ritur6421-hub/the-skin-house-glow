@@ -172,7 +172,7 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
                 className="w-full gold-gradient text-primary-foreground py-3 rounded-lg font-semibold tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-sm"
               >
                 <Send size={14} />
-                {loading ? "Booking..." : "Book Now"}
+                {loading ? "Booking..." : "Book on WhatsApp"}
               </button>
             </form>
           </motion.div>

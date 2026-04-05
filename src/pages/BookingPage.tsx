@@ -181,7 +181,7 @@ const BookingPage = () => {
                 className="w-full gold-gradient text-primary-foreground py-4 rounded-xl font-semibold tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-sm"
               >
                 <Send size={16} />
-                {loading ? "Sending..." : "Confirm Appointment"}
+                {loading ? "Sending..." : "Book on WhatsApp"}
               </button>
             </form>
           </motion.div>
