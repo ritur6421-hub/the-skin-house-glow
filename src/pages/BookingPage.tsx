@@ -37,8 +37,8 @@ const BookingPage = () => {
       const { error } = await submitAppointment(form);
       if (error) { console.error("Appointment insert error:", error); throw error; }
       console.log("Appointment saved successfully");
-
-      toast.success("Appointment booked successfully! We'll contact you shortly.");
+      openWhatsApp(form);
+      toast.success("Appointment booked! WhatsApp is opening...");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
     } catch (error) {
       console.error("Appointment page submission failed:", error);
