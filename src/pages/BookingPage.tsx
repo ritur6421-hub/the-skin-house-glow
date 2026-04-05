@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Send } from "lucide-react";
 import { toast } from "sonner";
-import { submitAppointment } from "@/lib/appointments";
+import { submitAppointment, openWhatsApp } from "@/lib/appointments";
 
 const serviceOptions = [
   "Botox & Fillers",
@@ -37,8 +37,8 @@ const BookingPage = () => {
       const { error } = await submitAppointment(form);
       if (error) { console.error("Appointment insert error:", error); throw error; }
       console.log("Appointment saved successfully");
-
-      toast.success("Appointment booked successfully! We'll contact you shortly.");
+      openWhatsApp(form);
+      toast.success("Appointment booked! WhatsApp is opening...");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
     } catch (error) {
       console.error("Appointment page submission failed:", error);
@@ -181,7 +181,7 @@ const BookingPage = () => {
                 className="w-full gold-gradient text-primary-foreground py-4 rounded-xl font-semibold tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-sm"
               >
                 <Send size={16} />
-                {loading ? "Sending..." : "Confirm Appointment"}
+                {loading ? "Sending..." : "Book on WhatsApp"}
               </button>
             </form>
           </motion.div>

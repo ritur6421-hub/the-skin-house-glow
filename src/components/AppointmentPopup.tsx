@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send } from "lucide-react";
 import { toast } from "sonner";
-import { submitAppointment } from "@/lib/appointments";
+import { submitAppointment, openWhatsApp } from "@/lib/appointments";
 
 const serviceOptions = [
   "Botox & Fillers",
@@ -44,7 +44,8 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
         throw error;
       }
       console.log("Appointment saved successfully");
-      toast.success("Appointment booked! We'll contact you shortly.");
+      openWhatsApp(form);
+      toast.success("Appointment booked! WhatsApp is opening...");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
       onClose();
     } catch (error) {
@@ -171,7 +172,7 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
                 className="w-full gold-gradient text-primary-foreground py-3 rounded-lg font-semibold tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-sm"
               >
                 <Send size={14} />
-                {loading ? "Booking..." : "Book Now"}
+                {loading ? "Booking..." : "Book on WhatsApp"}
               </button>
             </form>
           </motion.div>
