@@ -1,16 +1,43 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Play, X } from "lucide-react";
 
-const galleryItems = [
-  { category: "Hydra Facial", desc: "Radiant glow after a single session" },
-  { category: "Chemical Peel", desc: "Visible improvement in skin texture" },
-  { category: "Laser Treatment", desc: "Pigmentation reduced significantly" },
-  { category: "Acne Scar", desc: "Smoother skin after treatment course" },
-  { category: "Hair Restoration", desc: "Noticeable hair regrowth results" },
-  { category: "Botox & Fillers", desc: "Natural-looking wrinkle reduction" },
+const videos = [
+  {
+    id: "dQw4w9WgXcQ",
+    title: "Hydra Facial Treatment",
+    desc: "Deep cleansing for radiant, glowing skin",
+  },
+  {
+    id: "dQw4w9WgXcQ",
+    title: "Chemical Peel Session",
+    desc: "Visible improvement in skin texture",
+  },
+  {
+    id: "dQw4w9WgXcQ",
+    title: "Laser Pigmentation Removal",
+    desc: "Advanced laser technology for flawless skin",
+  },
+  {
+    id: "dQw4w9WgXcQ",
+    title: "Hair Restoration Therapy",
+    desc: "Noticeable hair regrowth results",
+  },
+  {
+    id: "dQw4w9WgXcQ",
+    title: "Anti-Aging Botox Treatment",
+    desc: "Natural-looking wrinkle reduction",
+  },
+  {
+    id: "dQw4w9WgXcQ",
+    title: "Acne Scar Treatment",
+    desc: "Smoother, clearer skin after sessions",
+  },
 ];
 
 const GalleryPage = () => {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
   return (
     <div className="pt-20">
       {/* Hero */}
@@ -22,70 +49,87 @@ const GalleryPage = () => {
             transition={{ duration: 0.8 }}
           >
             <p className="text-primary text-sm tracking-[0.3em] uppercase mb-3 font-semibold">
-              Results
+              Video Gallery
             </p>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-              Before & After Gallery
+              Our Treatments in Action
             </h1>
             <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-              See the transformative results our patients have achieved with our
-              advanced treatments.
+              Real results, real transformations
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Gallery Grid */}
+      {/* Video Grid */}
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryItems.map((item, i) => (
+            {videos.map((video, i) => (
               <motion.div
-                key={item.category}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl transition-all"
+                className="group rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl transition-all duration-300 cursor-pointer"
+                onClick={() => setActiveVideo(video.id)}
               >
-                {/* Placeholder for before/after */}
-                <div className="aspect-[4/3] bg-muted flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 flex">
-                    <div className="w-1/2 bg-muted flex items-center justify-center border-r border-border">
-                      <span className="text-muted-foreground text-sm font-medium">Before</span>
+                {/* Thumbnail */}
+                <div className="aspect-video relative overflow-hidden">
+                  <img
+                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
                     </div>
-                    <div className="w-1/2 bg-secondary flex items-center justify-center">
-                      <span className="text-secondary-foreground text-sm font-medium">After</span>
-                    </div>
-                  </div>
-                  <div className="absolute top-3 left-3 bg-primary/90 text-primary-foreground text-xs px-3 py-1 rounded-full font-medium z-10">
-                    {item.category}
                   </div>
                 </div>
                 <div className="p-5">
                   <h3 className="font-display text-lg font-semibold text-foreground mb-1">
-                    {item.category}
+                    {video.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">{item.desc}</p>
+                  <p className="text-muted-foreground text-sm">{video.desc}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-
-          <div className="text-center mt-16">
-            <p className="text-muted-foreground mb-4">
-              Actual patient results will be displayed here. Contact us to see
-              more transformations.
-            </p>
-            <Link
-              to="/book"
-              className="gold-gradient text-primary-foreground px-8 py-3 rounded-full text-sm font-bold tracking-widest uppercase hover:opacity-90 transition-all inline-block"
-            >
-              Book Your Consultation
-            </Link>
-          </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-50 bg-foreground/80 flex items-center justify-center p-4"
+          onClick={() => setActiveVideo(null)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute -top-12 right-0 text-background hover:text-primary transition-colors z-10"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <iframe
+              src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&rel=0`}
+              title="Treatment Video"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };
