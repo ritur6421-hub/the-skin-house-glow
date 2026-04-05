@@ -44,7 +44,8 @@ const AppointmentPopup = ({ isOpen, onClose }: AppointmentPopupProps) => {
         throw error;
       }
       console.log("Appointment saved successfully");
-      toast.success("Appointment booked! We'll contact you shortly.");
+      openWhatsApp(form);
+      toast.success("Appointment booked! WhatsApp is opening...");
       setForm({ name: "", phone: "", service: "", date: "", message: "" });
       onClose();
     } catch (error) {
