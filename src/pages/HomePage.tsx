@@ -27,14 +27,6 @@ const testimonials = [
   { name: "Rajan M.", text: "Great experience with hair restoration. Seeing real results within months. Thank you Dr. Kaur!", rating: 5 },
 ];
 
-const galleryItems = [
-  { category: "Hydra Facial", desc: "Radiant glow after a single session" },
-  { category: "Chemical Peel", desc: "Visible improvement in skin texture" },
-  { category: "Laser Treatment", desc: "Pigmentation reduced significantly" },
-  { category: "Acne Scar", desc: "Smoother skin after treatment course" },
-  { category: "Hair Restoration", desc: "Noticeable hair regrowth results" },
-  { category: "Botox & Fillers", desc: "Natural-looking wrinkle reduction" },
-];
 
 const HomePage = () => {
   const [popupOpen, setPopupOpen] = useState(false);
