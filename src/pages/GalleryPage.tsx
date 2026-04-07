@@ -46,7 +46,7 @@ const videos: VideoItem[] = [
 ];
 
 const GalleryPage = () => {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
 
   return (
     <div className="pt-20">
@@ -83,16 +83,25 @@ const GalleryPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="group rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onClick={() => setActiveVideo(video.id)}
+                onClick={() => setActiveVideo(video)}
               >
                 {/* Thumbnail */}
                 <div className="aspect-video relative overflow-hidden">
-                  <img
-                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
-                    alt={video.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {video.type === "mp4" ? (
+                    <video
+                      src={video.src}
+                      muted
+                      preload="metadata"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <img
+                      src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                      alt={video.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center">
                     <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
                       <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
@@ -130,13 +139,22 @@ const GalleryPage = () => {
             >
               <X className="w-8 h-8" />
             </button>
-            <iframe
-              src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&rel=0`}
-              title="Treatment Video"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              className="w-full h-full"
-            />
+            {activeVideo.type === "mp4" ? (
+              <video
+                src={activeVideo.src}
+                controls
+                autoPlay
+                className="w-full h-full bg-black"
+              />
+            ) : (
+              <iframe
+                src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1&rel=0`}
+                title="Treatment Video"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            )}
           </motion.div>
         </div>
       )}
