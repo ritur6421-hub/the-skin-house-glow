@@ -87,12 +87,19 @@ const GalleryPage = () => {
                 onClick={() => setActiveVideo(video)}
               >
                 {/* Thumbnail */}
-                <div className="aspect-video relative overflow-hidden">
+                <div className={`${video.type === "image" ? "aspect-square" : "aspect-video"} relative overflow-hidden`}>
                   {video.type === "mp4" ? (
                     <video
                       src={video.src}
                       muted
                       preload="metadata"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : video.type === "image" ? (
+                    <img
+                      src={video.src}
+                      alt={video.title}
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
@@ -103,11 +110,13 @@ const GalleryPage = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   )}
-                  <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                      <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+                  {video.type !== "image" && (
+                    <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                        <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <div className="p-5">
                   <h3 className="font-display text-lg font-semibold text-foreground mb-1">
