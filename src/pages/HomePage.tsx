@@ -27,14 +27,6 @@ const testimonials = [
   { name: "Rajan M.", text: "Great experience with hair restoration. Seeing real results within months. Thank you Dr. Kaur!", rating: 5 },
 ];
 
-const galleryItems = [
-  { category: "Hydra Facial", desc: "Radiant glow after a single session" },
-  { category: "Chemical Peel", desc: "Visible improvement in skin texture" },
-  { category: "Laser Treatment", desc: "Pigmentation reduced significantly" },
-  { category: "Acne Scar", desc: "Smoother skin after treatment course" },
-  { category: "Hair Restoration", desc: "Noticeable hair regrowth results" },
-  { category: "Botox & Fillers", desc: "Natural-looking wrinkle reduction" },
-];
 
 const HomePage = () => {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -203,48 +195,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Before/After Gallery */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <motion.div {...fadeInUp} className="text-center mb-16">
-            <p className="text-primary text-sm tracking-[0.3em] uppercase mb-3 font-semibold">Results</p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">Before & After</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryItems.map((item, i) => (
-              <motion.div
-                key={item.category}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="aspect-[4/3] bg-muted flex relative overflow-hidden">
-                  <div className="w-1/2 bg-muted flex items-center justify-center border-r border-border">
-                    <span className="text-muted-foreground text-sm font-medium">Before</span>
-                  </div>
-                  <div className="w-1/2 bg-secondary flex items-center justify-center">
-                    <span className="text-secondary-foreground text-sm font-medium">After</span>
-                  </div>
-                  <div className="absolute top-3 left-3 bg-primary/90 text-primary-foreground text-xs px-3 py-1 rounded-full font-medium">
-                    {item.category}
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-lg font-semibold text-foreground mb-1">{item.category}</h3>
-                  <p className="text-muted-foreground text-sm">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link to="/gallery" className="text-primary font-semibold text-sm tracking-wider uppercase hover:underline">
-              View Full Gallery →
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials */}
       <section className="py-24 bg-secondary">
