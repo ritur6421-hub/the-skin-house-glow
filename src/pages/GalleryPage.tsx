@@ -156,6 +156,12 @@ const GalleryPage = () => {
                 autoPlay
                 className="w-full h-full bg-black"
               />
+            ) : activeVideo.type === "image" ? (
+              <img
+                src={activeVideo.src}
+                alt={activeVideo.title}
+                className="w-full h-full object-contain bg-black"
+              />
             ) : (
               <iframe
                 src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1&rel=0`}
