@@ -4,7 +4,8 @@ import { Play, X } from "lucide-react";
 
 type VideoItem = 
   | { type: "mp4"; src: string; title: string; desc: string }
-  | { type: "youtube"; id: string; title: string; desc: string };
+  | { type: "youtube"; id: string; title: string; desc: string }
+  | { type: "image"; src: string; title: string; desc: string };
 
 const videos: VideoItem[] = [
   {
