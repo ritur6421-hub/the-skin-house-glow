@@ -33,10 +33,10 @@ const videos: VideoItem[] = [
     desc: "Noticeable hair regrowth results",
   },
   {
-    type: "youtube",
-    id: "dQw4w9WgXcQ",
-    title: "Anti-Aging Botox Treatment",
-    desc: "Natural-looking wrinkle reduction",
+    type: "mp4",
+    src: "/videos/lip-tint.mp4",
+    title: "Lip Tint Treatment",
+    desc: "Beautiful, natural-looking lip enhancement",
   },
   {
     type: "image",
