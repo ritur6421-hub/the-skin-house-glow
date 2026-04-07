@@ -39,8 +39,8 @@ const videos: VideoItem[] = [
     desc: "Natural-looking wrinkle reduction",
   },
   {
-    type: "youtube",
-    id: "dQw4w9WgXcQ",
+    type: "image",
+    src: "/images/acne-scar-treatment.jpg",
     title: "Acne Scar Treatment",
     desc: "Smoother, clearer skin after sessions",
   },
