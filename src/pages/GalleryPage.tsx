@@ -15,10 +15,10 @@ const videos: VideoItem[] = [
     desc: "Deep cleansing for radiant, glowing skin",
   },
   {
-    type: "youtube",
-    id: "dQw4w9WgXcQ",
-    title: "Chemical Peel Session",
-    desc: "Visible improvement in skin texture",
+    type: "mp4",
+    src: "/videos/aqua-gold-therapy.mp4",
+    title: "Aqua Gold Therapy",
+    desc: "Premium skin rejuvenation treatment",
   },
   {
     type: "youtube",
