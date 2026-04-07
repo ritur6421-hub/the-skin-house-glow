@@ -21,14 +21,8 @@ const videos: VideoItem[] = [
     desc: "Premium skin rejuvenation treatment",
   },
   {
-    type: "youtube",
-    id: "dQw4w9WgXcQ",
-    title: "Laser Pigmentation Removal",
-    desc: "Advanced laser technology for flawless skin",
-  },
-  {
-    type: "youtube",
-    id: "dQw4w9WgXcQ",
+    type: "mp4",
+    src: "/videos/hair-therapy.mp4",
     title: "Hair Restoration Therapy",
     desc: "Noticeable hair regrowth results",
   },
