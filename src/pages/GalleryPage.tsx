@@ -2,33 +2,43 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Play, X } from "lucide-react";
 
-const videos = [
+type VideoItem = 
+  | { type: "mp4"; src: string; title: string; desc: string }
+  | { type: "youtube"; id: string; title: string; desc: string };
+
+const videos: VideoItem[] = [
   {
-    id: "dQw4w9WgXcQ",
+    type: "mp4",
+    src: "/videos/hydra-facial.mp4",
     title: "Hydra Facial Treatment",
     desc: "Deep cleansing for radiant, glowing skin",
   },
   {
+    type: "youtube",
     id: "dQw4w9WgXcQ",
     title: "Chemical Peel Session",
     desc: "Visible improvement in skin texture",
   },
   {
+    type: "youtube",
     id: "dQw4w9WgXcQ",
     title: "Laser Pigmentation Removal",
     desc: "Advanced laser technology for flawless skin",
   },
   {
+    type: "youtube",
     id: "dQw4w9WgXcQ",
     title: "Hair Restoration Therapy",
     desc: "Noticeable hair regrowth results",
   },
   {
+    type: "youtube",
     id: "dQw4w9WgXcQ",
     title: "Anti-Aging Botox Treatment",
     desc: "Natural-looking wrinkle reduction",
   },
   {
+    type: "youtube",
     id: "dQw4w9WgXcQ",
     title: "Acne Scar Treatment",
     desc: "Smoother, clearer skin after sessions",
